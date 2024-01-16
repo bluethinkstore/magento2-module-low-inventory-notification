@@ -7,7 +7,7 @@
                 <notify_for_quantity_below_label>Notify For Quantity Below</notify_for_quantity_below_label>                               
             </general>
             <email_configuration>
-                <notify_email_subject>Low Stock Notification.</notify_email_subject>
+                <notify_email_subject>Low Inventory Notification.</notify_email_subject>
                 <sender>general</sender>
                 <email_template>bluethink_admin_low_inventory_notification_email_configuration_email_template</email_template>
             </email_configuration>

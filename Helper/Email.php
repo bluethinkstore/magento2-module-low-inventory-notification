@@ -44,6 +44,10 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
      */
     private $logger;
     /**
+     * @var \Magento\Framework\Pricing\Helper\Data
+     */
+    private $priceHelper;
+    /**
      * This is a directoryList
      *
      * @var logger $directoryList
@@ -76,7 +80,7 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param StoreManagerInterface $storeManager
      * @param LoggerInterface $logger
-     * @param \Magento\Framework\Pricing\Helper\Data $helperData
+     * @param \Magento\Framework\Pricing\Helper\Data $priceHelper
      * @param File $file
      * @param \Magento\Framework\App\Filesystem\DirectoryList $directoryList
      * @param filesystem $filesystem
@@ -89,7 +93,7 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         StoreManagerInterface $storeManager,
         LoggerInterface $logger,
-        \Magento\Framework\Pricing\Helper\Data $helperData,
+        \Magento\Framework\Pricing\Helper\Data $priceHelper,
         File $file,
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
         \Magento\Framework\filesystem  $filesystem,
@@ -102,7 +106,8 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->logger = $logger;
-        $this->helperData=$helperData;
+        $this->priceHelper = $priceHelper ?: \Magento\Framework\App\ObjectManager::getInstance()
+            ->get(\Magento\Framework\Pricing\Helper\Data::class);
         $this->file = $file;
         $this->filesystem = $filesystem;
     }
@@ -134,7 +139,7 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
                 'name'       => $product->getName(),
                 'sku'        => $product->getSku(),
                 'qty'        => $product->getQty(),
-                'price'      => $formattedPrice = $this->helperData->currency($product->getPrice(), true, false)
+                'price'      => $formattedPrice = $this->priceHelper->currency($product->getPrice(), true, false)
                 ];
         }
         $this->csvProcessor

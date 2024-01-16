@@ -16,23 +16,23 @@ class Bluethink extends Command
      */
      protected $state;
     /**
-     * This is a emailHelperData
+     * This is a helpervalue
      *
-     * @var emailHelperData $emailHelperData
+     * @var helpervalue $helpervalue
      */
-     private $emailHelperData;
+     private $helpervalue;
     /**
      * This is a construct
      *
      * @param State $state
-     * @param Data $HelperData
+     * @param Data $helpervalue
      */
     public function __construct(
         State $state,
-        Data $HelperData
+        Data $helpervalue
     ) {
-        $this->HelperData = $HelperData;
         $this->state = $state;
+        $this->helpervalue = $helpervalue;
         return parent::__construct();
     }
 
@@ -55,10 +55,11 @@ class Bluethink extends Command
     * @param InputInterface $input
     * @param OutputInterface $output
     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
-        $data=$this->HelperData->synclowinventorynotification();
+        $data=$this->helpervalue->synclowinventorynotification();
         $output->writeln($data);
+        return 0;
     }
 }

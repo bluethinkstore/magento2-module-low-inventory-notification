@@ -6,7 +6,7 @@
             <label>BlueThink Inc</label>
         </tab>
         <section id="bluethink_admin_low_inventory_notification" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Admin Low Stock Notification Setting</label>
+            <label>Admin Low Inventory Notification Setting</label>
             <tab>bluethink</tab>
             <resource>Bluethinkinc_LowInventoryNotification::bluethink_admin_low_inventory_notification</resource>
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -19,7 +19,7 @@
                 <field id="notify_for_quantity_below" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Notify On Below Quantity</label>
                     <validate>required-entry</validate>
-                    <comment>Enter Qty to define low Stock product.</comment>
+                    <comment>Enter Qty to define low Inventory product.</comment>
                 </field>
             </group>
             <group id="notification_first" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
@@ -29,8 +29,7 @@
                     <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
                     <backend_model>Bluethinkinc\LowInventoryNotification\Model\Config\CronConfig</backend_model>
                 </field>
-                <field id="time" translate="label comment" sortOrder="2" type="time" showInDefault="1" showInWebsite="0"
-                       showInStore="0">
+                <field id="time" translate="label comment" sortOrder="2" type="time" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Start Time</label>
                 </field>
             </group>
@@ -57,11 +56,11 @@
                 </field>
             </group>
             <group id="test_notification" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Manually Send Email Low Stock Notification</label>
+                <label>Manually Send Email Low Inventory Notification</label>
                 <field id="send_notification" translate="label" type="button" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Low Stock Notification</label>
+                    <label>Low Inventory Notification</label>
                     <frontend_model>Bluethinkinc\LowInventoryNotification\Block\System\Config\SendNotificationButton</frontend_model>
-                    <comment>Manually send Low Stock Notification 1. You will get email with low Stock items.</comment>
+                    <comment>Manually send Low Inventory Notification 1. You will get email with low Inventory items.</comment>
                 </field>
             </group>
         </section>

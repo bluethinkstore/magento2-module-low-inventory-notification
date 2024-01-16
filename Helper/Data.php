@@ -5,7 +5,7 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Bluethinkinc\LowInventoryNotification\Helper\Email;
-use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory as Config;
+use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory as Configurationvalue;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
@@ -27,9 +27,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     private $helperEmail;
     /**
-     * @var Config
+     * @var Configurationvalue
      */
-    private $Config;
+    private $Configurationvalue;
     /**
      * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
      */
@@ -41,20 +41,20 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param ScopeConfigInterface $scopeConfig
      * @param Email $helperEmail
      * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory
-     * @param Config $Config
+     * @param Configurationvalue $Configurationvalue
      */
     public function __construct(
         StoreManagerInterface $storeManager,
         ScopeConfigInterface $scopeConfig,
         Email $helperEmail,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory,
-        Config $Config
+        Configurationvalue $Configurationvalue
     ) {
         $this->storeManager = $storeManager;
         $this->scopeConfig = $scopeConfig;
         $this->helperEmail = $helperEmail;
         $this->collectionFactory = $collectionFactory;
-        $this->_Config =$Config;
+        $this->Configurationvalue = $Configurationvalue;
     }
 
    /**
@@ -102,7 +102,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function checkexistconfigdata($configpath, $scope, $storeid)
     {
-        $_Config = $this->_Config->create();
+        $_Config = $this->Configurationvalue->create();
         $_Config->addFieldToFilter('path', ['eq'=>$configpath]);
         $_Config->addFieldToFilter('scope_id', ['eq'=>$storeid]);
         $_Config->addFieldToFilter('scope', ['eq'=>$scope]);
