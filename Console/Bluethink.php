@@ -33,13 +33,13 @@ class Bluethink extends Command
     ) {
         $this->state = $state;
         $this->helpervalue = $helpervalue;
-        return parent::__construct();
+        parent::__construct();
     }
 
     /**
      * This is a configure function
      *
-     * @return  configure
+     * @return  void
      */
     protected function configure()
     {

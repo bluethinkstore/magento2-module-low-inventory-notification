@@ -66,12 +66,6 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
      */
     protected $file;
     /**
-     * This is a filesystem
-     *
-     * @var filesystem $filesystem
-     */
-    protected $filesystem;
-    /**
      * This is a construct
      *
      * @param Context $context
@@ -83,7 +77,6 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Framework\Pricing\Helper\Data $priceHelper
      * @param File $file
      * @param \Magento\Framework\App\Filesystem\DirectoryList $directoryList
-     * @param filesystem $filesystem
      * @param \Magento\Framework\File\Csv $csvProcessor
      */
     public function __construct(
@@ -96,7 +89,6 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\Pricing\Helper\Data $priceHelper,
         File $file,
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
-        \Magento\Framework\filesystem  $filesystem,
         \Magento\Framework\File\Csv $csvProcessor
     ) {
         $this->inlineTranslation = $inlineTranslation;
@@ -109,7 +101,6 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
         $this->priceHelper = $priceHelper ?: \Magento\Framework\App\ObjectManager::getInstance()
             ->get(\Magento\Framework\Pricing\Helper\Data::class);
         $this->file = $file;
-        $this->filesystem = $filesystem;
     }
     /**
      * This is a sendEmail
