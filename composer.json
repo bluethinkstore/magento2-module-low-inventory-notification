@@ -3,12 +3,8 @@
     "description": "Low Inventory Notification",
     "type": "magento2-module",
     "minimum-stability": "dev",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "license": "proprietary",
-    "require": 
-    { 
-     "php": "~8.2.0"      
-    },
     "authors": [
         {
             "name": "Bluethinkinc"
