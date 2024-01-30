@@ -8,6 +8,9 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\Filesystem\Io\File;
+use Laminas\Mime\Mime as MimeType;
+use Laminas\Mime\Message as MimeMessage;
+use Laminas\Mime\Part as MimePart;
 
 class Email extends \Magento\Framework\App\Helper\AbstractHelper
 {
@@ -188,11 +191,27 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
                         'store' => $this->storeManager->getStore()->getid()
                     ]
                 )
-                ->addAttachment($this->file->read($filePath), $fileName, $mimeType)
                 ->setTemplateVars($data)
                 ->setFrom($sender)
                 ->addTo($email)
                 ->getTransport();
+                $body = $transport->getMessage()->getBody();
+                if ($body instanceof MimeMessage) {
+                    $parts = $body->getParts();
+
+                    $attachmentPart = new MimePart();
+                    $attachmentPart->setContent($this->file->read($filePath))
+                        ->setType($mimeType)
+                        ->setFileName($fileName)
+                        ->setDisposition(MimeType::DISPOSITION_ATTACHMENT)
+                        ->setEncoding(MimeType::ENCODING_BASE64);
+                    $parts[] = $attachmentPart;
+
+                    $message = new MimeMessage();
+                    $message->setParts($parts);
+
+                    $transport->getMessage()->setBody($message);
+                }
             }
             try {
                 $transport->sendMessage();
