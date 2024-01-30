@@ -1,9 +1,9 @@
 {
-    "name": "bluethinkinc/magento-2-low-inventory-notification",
+    "name": "bluethinkinc/magento2-module-low-inventory-notification",
     "description": "Low Inventory Notification",
     "type": "magento2-module",
     "minimum-stability": "dev",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "license": "proprietary",
     "authors": [
         {
